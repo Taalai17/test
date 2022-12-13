@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taalai-deploy
+  labels:
+    app: guestbook
+spec:
+  # modify replicas according to your case
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: webapp-taalai
+    spec:
+      containers:
+      - name: httpd
+        image: httpd
+  selector: #must match labels of the pods
+    matchLabels:
+      app: webapp-taalai
